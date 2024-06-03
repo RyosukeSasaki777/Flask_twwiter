@@ -19,7 +19,7 @@ def show_entries():
         
     # print(post_datas[0].User_Table.name)
 
-    return render_template('entries/index.html', post_datas=post_datas, id=session['user_id'])
+    return render_template('entries/index.html', post_datas=post_datas, session_id=session['user_id'])
 
 # 投稿の編集画面へ遷移
 @app.route('/edit_entry/<id>')
