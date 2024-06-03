@@ -3,10 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
+# import twwiter_app.views
+
 app.config.from_object('twwiter_app.config')
 
 db = SQLAlchemy(app)
 
-# import holi_master.views
-
-# from holi_master.views import views, entries
+from twwiter_app.views import entries, login

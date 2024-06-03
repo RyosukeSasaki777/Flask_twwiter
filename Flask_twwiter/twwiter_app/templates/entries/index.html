@@ -1,0 +1,38 @@
+{%extends"layout.html"%}
+{%block bar%}
+{% if not session.logged_in %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('login') }}">ログイン</a>
+</li>
+{% else %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('new_entry') }}">新規投稿</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('logout') }}">ログアウト</a>
+</li>
+{% endif %}
+{%endblock%}
+
+{%block body%}
+{{ id }}
+<br>
+<ul class="list-group list-group-flush">
+
+    {% for post_data in post_datas %}
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">投稿者：{{ post_data.User_Table.name }}</p>
+                <h5 class="card-title">{{ post_data.Post_Table.title }}</h5>
+                <p class="card-text">{{ post_data.Post_Table.text }}</p>
+                <img src="{{ post_data.Post_Table.image_url }}" alt="">
+                <a href="/edit_entry/{{ post_data.Post_Table.id }}"  class="card-link">編集</a>
+            </div>
+        </div>
+    {% else %}
+    投稿がありません
+    {% endfor %}
+</ul>
+
+
+{%endblock%}
